@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>DODGER GAME</title>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     </head>
     <body style="text-align: center;">
         <style>
@@ -14,8 +15,9 @@
             <body onload="startGame()">
             <script>
             
+            var myScore = 0;
             var myGamePiece;
-            let health = 30;
+            let health = 10;
             let myGameEnemy1;
             let myGameEnemy2;
             let myGameEnemy3;
@@ -39,7 +41,7 @@
                     this.canvas.height = 600;
                     this.context = this.canvas.getContext("2d");
                     document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-                    this.interval = setInterval(updateGameArea, 12);
+                    this.interval = setInterval(updateGameArea, 10);
                 },
                 clear : function() {
                     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -64,11 +66,10 @@
                 }
                 this.hurt = function(hAm) {
                     health -= hAm
-                    document.getElementById("health").innerHTML = "Health: " + [health];
                     if(health < 1){
-                        document.getElementById("health").innerHTML = "Health: " + [health];
+                        let scoreText = Math.floor(myScore / 10);
                         location.reload();
-                        alert("You have died");
+                        alert("You have died. Your score was: " + [scoreText]);
                     }
                 }
                 this.newPos = function() {
@@ -274,19 +275,31 @@
                 myGameEnemy5.speedY = (downSpeed - 2);
             }
 
+            function score () {
+                myScore++;
+                let scoreText = Math.floor(myScore / 10);
+                document.getElementById("scorePlace").innerHTML = "Score: " + [scoreText];
+            }
+
             function updateGameArea() {
-                document.getElementById("health").innerHTML = "Health: " + [health];
                 if (myGamePiece.crashWith(myGameEnemy1)) {
                     myGamePiece.hurt(1);
+                    enemy1();
                 } else if (myGamePiece.crashWith(myGameEnemy2)){
                     myGamePiece.hurt(1);
+                    enemy2();
                 }else if (myGamePiece.crashWith(myGameEnemy3)){
                     myGamePiece.hurt(1);
+                    enemy3();
                 }else if (myGamePiece.crashWith(myGameEnemy4)){
                     myGamePiece.hurt(1);
+                    enemy4();
                 }else if (myGamePiece.crashWith(myGameEnemy5)){
                     myGamePiece.hurt(1);
+                    enemy5();
                 }
+                score();
+                move();
                 myGameArea.clear();
                 myGamePiece.newPos();    
                 myGamePiece.update();
@@ -346,8 +359,22 @@
                     myGamePiece.speedX = 0;
                 }
             });
+
+            function move() {
+            var elem = document.getElementById("myBar");   
+            var width = 20;
+            var id = setInterval(frame, 10);
+            function frame() {
+                elem.style.width = (health * 10) + '%';
+                }
+            }
+
             </script>
-            <div style="font-size: 30px;" id="health"></div>
+            <div id="scorePlace"></div>
+            <div style="width: 20%; margin: auto;" class="w3-light-grey w3-round-xlarge">
+                <div style="padding-bottom: 20px;" id="myBar" class="w3-container w3-green w3-round-xlarge" style="width:20%">       </div>
+            </div>
+
             <A HREF = "index.html"><button><kbd>HOME</kbd></button></A>
     </body>
 </html>
