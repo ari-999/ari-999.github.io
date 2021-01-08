@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="icon" href="orb1.ico">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>Ari's Site</title>
 
     <meta property="og:type" content="website">
@@ -11,6 +12,29 @@
     <meta property="og:image" content="https://raw.githubusercontent.com/ari-999/ari-999.github.io/main/orb1.png">
 
     <style type="text/css">
+
+        /* width */
+        ::-webkit-scrollbar {
+        width: 11px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey; 
+        border-radius: 15px;
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+        background: gray; 
+        border-radius: 10px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+        background: darkgray; 
+        }
+        
         html, #page {
             padding: 0;
             margin: 0;
@@ -55,7 +79,19 @@
 
         /* Header */
         #header {
-            background: #fff;
+            background: black;
+        }
+
+        /* The sticky class is added to the header with JS when it reaches its scroll position */
+        .sticky {
+        position: fixed;
+        top: 0;
+        width: 100%
+        }
+
+        /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
+        .sticky + .content {
+        padding-top: 102px;
         }
 
         #header-inner {
@@ -77,14 +113,15 @@
 
             .feature-inner h1 {
                 color: #f8dbdb;
-                font-size: 32px;
+                font-size: 40px;
             }
 
         /* Menu */
         #top-nav {
-            margin: 0 auto;
-            padding: 0px 0 0;
-            height: 37px;
+            margin: auto;
+            font-size: 17px;
+            padding: 0px;
+            height: 70px;
             float: right;
         }
 
@@ -97,7 +134,7 @@
 
                 #top-nav ul li {
                     margin: 0;
-                    padding: 0 0 0 8px;
+                    padding: 8px;
                     float: left;
                 }
 
@@ -105,7 +142,7 @@
                         display: block;
                         margin: 0;
                         padding: 8px 20px;
-                        color: red;
+                        color: rgb(255, 255, 255);
                         text-decoration: none;
                     }
 
@@ -131,7 +168,8 @@
             #content #contentbar .article {
                 margin: 0 0 24px;
                 padding: 0 20px 0 15px;
-                font-size: 20px;
+                font-size: 25px;
+                color: darkslategrey;
             }
 
         #content #sidebar {
@@ -181,7 +219,7 @@
 
         /* Footerblurb */
         #footerblurb {
-            background: #3a75a5;
+            background: #fffa63;
             color: rgb(53, 43, 87);
         }
 
@@ -192,6 +230,21 @@
         }
 
         #footerblurb .column {
+            margin: 0;
+            text-align: center;
+            float: left;
+            width: 250px;
+            padding: 0 24px;
+            color: black;
+        }
+
+        /* Footerblurb1 */
+        #footerblurb1 {
+            background: #818fdd;
+            color: rgb(53, 43, 87);
+        }
+
+        #footerblurb1 .column {
             margin: 0;
             text-align: center;
             float: left;
@@ -230,7 +283,8 @@
 </head>
 <body>
     <div id="page">
-        <header id="header">
+
+        <header class="sticky" id="header">
             <div id="header-inner">
                 <div id="logo">
                     <h1><a href="#">Ari's<span> Site</span></a></h1>
@@ -244,12 +298,15 @@
                 <div class="clr"></div>
             </div>
         </header>
+
         <div class="feature">
             <div class="feature-inner">
-                <h1>Welcome to Ari's Site!</h1>
+                <br>
+                <br>
+                <br>
+                <h1>⠀⠀⠀⠀⠀⠀⠀Welcome to Ari's Site!</h1>
             </div>
         </div>
-
 
         <div id="content">
             <div id="content-inner">
@@ -264,7 +321,7 @@
             </div>
         </div>
 
-        <div style="text-align: center;" id="footerblurb">
+        <div style="text-align: center; align-items: center;" id="footerblurb">
             <div id="footerblurb-inner">
                 <a class="column" href="flappyGame.html">
                 <div class="column">
@@ -289,31 +346,40 @@
             </a>
                 <div class="clr"></div>
             </div>
-        </div><!--
+        </div>
         <br>
-        <div style="text-align: center;" id="footerblurb">
+        <br>
+        <div style="text-align: center;" id="footerblurb1">
             <div id="footerblurb-inner">
-                <a class="column" href="index.html">
+                <a class="column" href="flappyGame.html">
                 <div class="column">
-                    <h2><span>INDEX</span></h2>
-                    <p>
-                    INDEX</p>
-                </div>
+                    <br>
+                    <div class="w3-card-4" style="width:100%">
+                        <img src="flappyPreview.png" alt="A preview of the Flappy Game" style="width:140%">
+                        <div class="w3-container w3-center">
+                        </div>
+                      </div>
+                    </div>
             </a>
-            <a class="column" href="index.html">
+            <a class="column" href="snakeGame.html">
                 <div class="column">
-                    <h2><span>INDEX</span></h2>
-                    <p>
-                    INDEX</p>
-                </div>
+                    <div class="w3-card-4" style="width:100%">
+                        <img src="snakePreview.png" alt="A preview of the Snake Game" style="width:140%">
+                        <div class="w3-container w3-center">
+                        </div>
+                      </div>
+                    </div>
             </a>
-            <a class="column" href="404.html">
+            <a class="column" href="dodgerGame.html">
                 <div class="column">
-                    <h2><span>NEXTPROJ</span></h2>
-                    <p>
-                    UNSET</p>
-                </div>
-            </a>-->
+                    <br>
+                    <div class="w3-card-4" style="width:100%">
+                        <img src="dodgerPreview.png" alt="A preview of the Dodger Game" style="width:140%">
+                        <div class="w3-container w3-center">
+                        </div>
+                      </div>
+                    </div>
+            </a>
                 <div class="clr"></div>
             </div>
         </div>
