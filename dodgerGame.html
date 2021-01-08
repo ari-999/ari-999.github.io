@@ -17,7 +17,7 @@
             
             var myScore = 0;
             var myGamePiece;
-            let health = 10;
+            let health = 20;
             let myGameEnemy1;
             let myGameEnemy2;
             let myGameEnemy3;
@@ -69,7 +69,10 @@
                     if(health < 1){
                         let scoreText = Math.floor(myScore / 10);
                         location.reload();
-                        alert("You have died. Your score was: " + [scoreText]);
+                        setTimeout(deathAlert(), 100);
+                        function deathAlert() {
+                            alert("You have died. Your score was: " + [scoreText]);
+                        }
                     }
                 }
                 this.newPos = function() {
@@ -365,7 +368,7 @@
             var width = 20;
             var id = setInterval(frame, 10);
             function frame() {
-                elem.style.width = (health * 10) + '%';
+                elem.style.width = (health * 5) + '%';
                 }
             }
 
