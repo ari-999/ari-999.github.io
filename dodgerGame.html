@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DODGER GAME</title>
+    </head>
+    <body style="text-align: center;">
+        <style>
+            canvas {
+                border:3px solid #d3d3d3;
+                background-color: #f1f1f1;
+            }
+            </style>
+            </head>
+            <body onload="startGame()">
+            <script>
+            
+            var myGamePiece;
+            let health = 30;
+            let myGameEnemy1;
+            let myGameEnemy2;
+            let myGameEnemy3;
+            let myGameEnemy4;
+            let myGameEnemy5;
+            
+            function startGame() { //lime
+                myGamePiece = new component(8, 8, "red", 200, 592);
+                myGameArea.start();
+                enemy1();
+                enemy2();
+                enemy3();
+                enemy4();
+                enemy5();
+            }
+            
+            var myGameArea = {
+                canvas : document.createElement("canvas"),
+                start : function() {
+                    this.canvas.width = 400;
+                    this.canvas.height = 600;
+                    this.context = this.canvas.getContext("2d");
+                    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                    this.interval = setInterval(updateGameArea, 12);
+                },
+                clear : function() {
+                    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                }
+            }
+            
+            function component(width, height, color, x, y) {
+                this.width = width;
+                this.height = height;
+                this.speedX = 0;
+                this.speedY = 0;
+                this.x = x;
+                this.y = y; 
+                this.update = function() {
+                    ctx = myGameArea.context;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+                if(this.x == myGameArea.canvas.width){
+                    myGameArea.speedX = 0;
+                    this.x = myGameArea.canvas.width;
+                }
+                this.hurt = function(hAm) {
+                    health -= hAm
+                    document.getElementById("health").innerHTML = "Health: " + [health];
+                    if(health < 1){
+                        document.getElementById("health").innerHTML = "Health: " + [health];
+                        location.reload();
+                        alert("You have died");
+                    }
+                }
+                this.newPos = function() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;        
+                    this.hitBottom();
+                    this.hitTop();
+                    this.hitRight();
+                    this.hitLeft();
+                }
+                this.hitBottom = function() {
+                    var rockbottom = myGameArea.canvas.height - this.height;
+                    if (this.y > rockbottom) {
+                        this.y = rockbottom;
+                        this.speedY = 0;
+                    }
+                }
+                this.hitTop = function() {
+                    if (this.y < 0) {
+                        this.y = 0;
+                        this.speedY = 0;
+                    }
+                }
+                this.hitRight = function() {
+                    var farRight = myGameArea.canvas.width - this.width;
+                    if (this.x > farRight) {
+                        this.x = farRight;
+                        this.speedX = 0;
+                    }
+                }
+                this.hitLeft = function() {
+                    if (this.x < 0) {
+                        this.x = 0;
+                        this.speedX = 0;
+                    }
+                }
+                this.crashWith = function(otherobj) {
+                    var myleft = this.x;
+                    var myright = this.x + (this.width);
+                    var mytop = this.y;
+                    var mybottom = this.y + (this.height);
+                    var otherleft = otherobj.x;
+                    var otherright = otherobj.x + (otherobj.width);
+                    var othertop = otherobj.y;
+                    var otherbottom = otherobj.y + (otherobj.height);
+                    var crash = true;
+                    if ((mybottom < othertop) ||
+                    (mytop > otherbottom) ||
+                    (myright < otherleft) ||
+                    (myleft > otherright)) {
+                    crash = false;
+                    }
+                    return crash;
+                }
+            }
+            function enemy1(){
+                let sz = Math.floor(Math.random() * 10) + 7;
+                myGameEnemy1 = new enemy1Component(sz, sz, "black", Math.floor(Math.random() * 405), -1);
+                down1(sz);
+            }
+            function enemy1Component(width, height, color, x, y) {
+                this.width = width;
+                this.height = height;
+                this.speedX = 0
+                this.speedY = 0;
+                this.x = x;
+                this.y = y;
+                this.update = function() {
+                    ctx = myGameArea.context;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+                this.newPos = function() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if(this.y > 600){
+                        enemy1();
+                    }
+                }
+            }
+    
+            function down1(downSpeed) {
+                myGameEnemy1.speedY = (downSpeed - 2);
+            }
+
+            function enemy2(){
+                let sz = Math.floor(Math.random() * 10) + 7;
+                myGameEnemy2 = new enemy2Component(sz, sz, "black", Math.floor(Math.random() * 405), -1);
+                down2(sz);
+            }
+            function enemy2Component(width, height, color, x, y) {
+                this.width = width;
+                this.height = height;
+                this.speedX = 0
+                this.speedY = 0;
+                this.x = x;
+                this.y = y;
+                this.update = function() {
+                    ctx = myGameArea.context;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+                this.newPos = function() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if(this.y > 600){
+                        enemy2();
+                    }
+                }
+            }
+    
+            function down2(downSpeed) {
+                myGameEnemy2.speedY = (downSpeed - 2);
+            }
+
+            function enemy3(){
+                let sz = Math.floor(Math.random() * 10) + 7;
+                myGameEnemy3 = new enemy3Component(sz, sz, "black", Math.floor(Math.random() * 405), -1);
+                down3(sz);
+            }
+            function enemy3Component(width, height, color, x, y) {
+                this.width = width;
+                this.height = height;
+                this.speedX = 0
+                this.speedY = 0;
+                this.x = x;
+                this.y = y;
+                this.update = function() {
+                    ctx = myGameArea.context;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+                this.newPos = function() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if(this.y > 600){
+                        enemy3();
+                    }
+                }
+            }
+    
+            function down3(downSpeed) {
+                myGameEnemy3.speedY = (downSpeed - 2);
+            }
+
+            function enemy4(){
+                let sz = Math.floor(Math.random() * 10) + 7;
+                myGameEnemy4 = new enemy4Component(sz, sz, "black", Math.floor(Math.random() * 405), -1);
+                down4(sz);
+            }
+            function enemy4Component(width, height, color, x, y) {
+                this.width = width;
+                this.height = height;
+                this.speedX = 0
+                this.speedY = 0;
+                this.x = x;
+                this.y = y;
+                this.update = function() {
+                    ctx = myGameArea.context;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+                this.newPos = function() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if(this.y > 600){
+                        enemy4();
+                    }
+                }
+            }
+    
+            function down4(downSpeed) {
+                myGameEnemy4.speedY = (downSpeed - 2);
+            }
+
+            function enemy5(){
+                let sz = Math.floor(Math.random() * 10) + 7;
+                myGameEnemy5 = new enemy5Component(sz, sz, "black", Math.floor(Math.random() * 405), -1);
+                down5(sz);
+            }
+            function enemy5Component(width, height, color, x, y) {
+                this.width = width;
+                this.height = height;
+                this.speedX = 0
+                this.speedY = 0;
+                this.x = x;
+                this.y = y;
+                this.update = function() {
+                    ctx = myGameArea.context;
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+                this.newPos = function() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if(this.y > 600){
+                        enemy5();
+                    }
+                }
+            }
+    
+            function down5(downSpeed) {
+                myGameEnemy5.speedY = (downSpeed - 2);
+            }
+
+            function updateGameArea() {
+                document.getElementById("health").innerHTML = "Health: " + [health];
+                if (myGamePiece.crashWith(myGameEnemy1)) {
+                    myGamePiece.hurt(1);
+                } else if (myGamePiece.crashWith(myGameEnemy2)){
+                    myGamePiece.hurt(1);
+                }else if (myGamePiece.crashWith(myGameEnemy3)){
+                    myGamePiece.hurt(1);
+                }else if (myGamePiece.crashWith(myGameEnemy4)){
+                    myGamePiece.hurt(1);
+                }else if (myGamePiece.crashWith(myGameEnemy5)){
+                    myGamePiece.hurt(1);
+                }
+                myGameArea.clear();
+                myGamePiece.newPos();    
+                myGamePiece.update();
+                myGameEnemy1.newPos();
+                myGameEnemy1.update();
+                myGameEnemy2.newPos();
+                myGameEnemy2.update();
+                myGameEnemy3.newPos();
+                myGameEnemy3.update();
+                myGameEnemy4.newPos();
+                myGameEnemy4.update();
+                myGameEnemy5.newPos();
+                myGameEnemy5.update();
+                
+            }
+
+            document.addEventListener('keydown', function(event) {
+                if(event.keyCode == 38) {
+                    myGamePiece.speedY = -2;
+                }
+            });
+            document.addEventListener('keyup', function(event) {
+                if(event.keyCode == 38) {
+                    myGamePiece.speedY = 0;
+                }
+            });
+
+            document.addEventListener('keydown', function(event) {
+                if(event.keyCode == 40) {
+                    myGamePiece.speedY = 2;
+                }
+            });
+            document.addEventListener('keyup', function(event) {
+                if(event.keyCode == 40) {
+                    myGamePiece.speedY = 0;
+                }
+            });
+
+            document.addEventListener('keydown', function(event) {
+                if(event.keyCode == 39) {
+                    myGamePiece.speedX = 2;
+                }
+            });
+            document.addEventListener('keyup', function(event) {
+                if(event.keyCode == 39) {
+                    myGamePiece.speedX = 0;
+                }
+            });
+
+            document.addEventListener('keydown', function(event) {
+                if(event.keyCode == 37) {
+                    myGamePiece.speedX = -2;
+                }
+            });
+            document.addEventListener('keyup', function(event) {
+                if(event.keyCode == 37) {
+                    myGamePiece.speedX = 0;
+                }
+            });
+            </script>
+            <div style="font-size: 30px;" id="health"></div>
+            <A HREF = "index.html"><button><kbd>HOME</kbd></button></A>
+    </body>
+</html>
