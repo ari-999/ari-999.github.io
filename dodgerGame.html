@@ -68,9 +68,11 @@
                 this.hurt = function(hAm) {
                     health -= hAm
                     if(health < 1){
+                        health = 0;
+                        move();
                         let scoreText = Math.floor(myScore / 10);
                         location.reload();
-                        setTimeout(deathAlert(), 100);
+                        deathAlert();
                         function deathAlert() {
                             alert("You have died. Your score was: " + [scoreText]);
                         }
@@ -317,7 +319,6 @@
                 myGameEnemy4.update();
                 myGameEnemy5.newPos();
                 myGameEnemy5.update();
-                
             }
 
             document.addEventListener('keydown', function(event) {
@@ -376,7 +377,7 @@
             </script>
             <div id="scorePlace"></div>
             <div style="width: 20%; margin: auto;" class="w3-light-grey w3-round-xlarge">
-                <div style="padding-bottom: 20px;" id="myBar" class="w3-container w3-green w3-round-xlarge" style="width:20%">       </div>
+                <div style="padding-bottom: 20px;" id="myBar" class="w3-container w3-green w3-round-xlarge" style="width:20%"></div>
             </div>
 
             <A HREF = "index"><button><kbd>HOME</kbd></button></A>

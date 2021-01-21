@@ -144,27 +144,11 @@ function killed() {
 
 function updateGameArea() {
     var x, height, gap, minHeight, maxHeight, minGap, maxGap;
-    nice();
     for (i = 0; i < myObstacles.length; i += 1) {
         if(GodMode === false){
         if (myGamePiece.crashWith(myObstacles[i])) {
             killed();
         }
-    }
-}
-
-function nice() {
-    if (myGameArea.frameNo == 69){
-        console.warn('𝕟𝕚𝕔𝕖')
-    }
-    if (myGameArea.frameNo == 420){
-        console.warn('𝕟𝕚𝕔𝕖')
-    }
-    if (myGameArea.frameNo == 42069){
-        console.warn('𝕟𝕚𝕔𝕖')
-    }
-    if (myGameArea.frameNo == 69420){
-        console.warn('𝕟𝕚𝕔𝕖')
     }
 }
 
