@@ -10,57 +10,32 @@
         type: Phaser.AUTO,
         width: 800,
         height: 600,
-        physics: {
-            default: 'arcade',
-            arcade: {
-                gravity: { y: 200 }
-            }
-        },
         scene: {
             preload: preload,
-            create: create
+            create: create,
+            update: update
         }
     };
 
     var game = new Phaser.Game(config);
 
-    var cursors;
-    var particles;
-    var emitter;
-    var logo;
+    let gameState = {};
 
     function preload ()
     {
         this.load.image('sky', 'https://labs.phaser.io/assets/skies/space3.png');
         this.load.image('logo', 'https://labs.phaser.io/assets/sprites/phaser3-logo.png');
-    //    this.load.image('red', 'https://labs.phaser.io/assets/particles/red.png');
-        this.load.image('red', 'orb1.png');
+       // this.load.image('red', 'https://labs.phaser.io/assets/particles/red.png');
     }
 
     function create ()
     {
-        cursors = this.input.keyboard.createCursorKeys();
-
-        this.add.image(400, 300, 'sky');
-
-        particles = this.add.particles('red');
-
-        emitter = particles.createEmitter({
-            speed: 100,
-            scale: { start: 0.5, end: -0.7 },
-            blendMode: 'ADD'
-        });
-
-        logo = this.physics.add.image(400, 100, 'logo');
-
-        logo.setVelocity(100, 200);
-        logo.setBounce(1, 1);
-        logo.setCollideWorldBounds(true);
-
-        emitter.startFollow(logo);
+        gameState.cursors = this.input.keyboard.createCursorKeys();
+        gameState.sky = this.add.image(400, 300, 'sky');
+        gameState.logo = this.add.image(300, 200, 'logo')
     }
 
-    function update ()
+    function update()
     {
         if (gameState.cursors.left.isDown){
             gameState.logo.x -= 4.5;
