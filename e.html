@@ -62,13 +62,17 @@
 
     function update ()
     {
-        if (cursors.left.isDown)
-        {
-            logo.setVelocityX(-300);
-        }
-        else if (cursors.right.isDown)
-        {
-            logo.setVelocityX(300);
+        if (gameState.cursors.left.isDown){
+            gameState.logo.x -= 4.5;
+        } 
+        if (gameState.cursors.right.isDown){
+            gameState.logo.x += 4.5;
+        } 
+        if (gameState.cursors.up.isDown){
+            gameState.logo.y -= 4.5;
+        } 
+        if (gameState.cursors.down.isDown){
+            gameState.logo.y += 4.5;
         }
     }
     </script>
