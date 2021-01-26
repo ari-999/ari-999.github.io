@@ -24,6 +24,11 @@
 
     var game = new Phaser.Game(config);
 
+    var cursors;
+    var particles;
+    var emitter;
+    var logo;
+
     function preload ()
     {
         this.load.image('sky', 'https://labs.phaser.io/assets/skies/space3.png');
@@ -42,7 +47,7 @@
 
         emitter = particles.createEmitter({
             speed: 100,
-            scale: { start: 1, end: 0 },
+            scale: { start: 0.5, end: 0 },
             blendMode: 'ADD'
         });
 
