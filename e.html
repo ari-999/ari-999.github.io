@@ -10,6 +10,13 @@
         type: Phaser.AUTO,
         width: 800,
         height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 300 },
+                debug: true
+            }
+        },
         scene: {
             preload: preload,
             create: create,
@@ -19,35 +26,53 @@
 
     var game = new Phaser.Game(config);
 
+    var player;
+    var background;
+    var cursors;
+    var emitter;
+    var particles;
+
     let gameState = {};
 
     function preload ()
     {
-        this.load.image('sky', 'https://labs.phaser.io/assets/skies/space3.png');
-        this.load.image('logo', 'https://labs.phaser.io/assets/sprites/phaser3-logo.png');
-       // this.load.image('red', 'https://labs.phaser.io/assets/particles/red.png');
+        this.load.image('background', 'https://labs.phaser.io/assets/skies/space3.png');
+        this.load.image('player', 'https://labs.phaser.io/assets/sprites/phaser3-logo.png');
+        this.load.image('red', 'https://labs.phaser.io/assets/particles/red.png');
     }
 
     function create ()
     {
+        gameState.background = this.add.image(400, 300, 'background');
+        particles = this.add.particles('red');
+        emitter = particles.createEmitter({
+            speed: 100,
+            scale: { start: 1.2, end: -0.01 },
+            blendMode: 'ADD'
+        });
         gameState.cursors = this.input.keyboard.createCursorKeys();
-        gameState.sky = this.add.image(400, 300, 'sky');
-        gameState.logo = this.add.image(300, 200, 'logo')
+        player = this.physics.add.image(400, 300, 'player');
+        player.setBounce(1, 1);
+        player.setCollideWorldBounds(true);
+        emitter.startFollow(player);
     }
 
     function update()
     {
-        if (gameState.cursors.left.isDown){
-            gameState.logo.x -= 4.5;
-        } 
-        if (gameState.cursors.right.isDown){
-            gameState.logo.x += 4.5;
-        } 
-        if (gameState.cursors.up.isDown){
-            gameState.logo.y -= 4.5;
-        } 
-        if (gameState.cursors.down.isDown){
-            gameState.logo.y += 4.5;
+        if (gameState.cursors.left.isDown)
+        {
+            player.setVelocityX(-160);
+        }
+        else if (gameState.cursors.right.isDown)
+        {
+            player.setVelocityX(160);
+        }
+        if (gameState.cursors.up.isDown)
+        {
+            player.setVelocityY(-160);
+        }else if (gameState.cursors.down.isDown)
+        {
+            player.setVelocityY(160);
         }
     }
     </script>
