@@ -13,7 +13,7 @@
         physics: {
             default: 'arcade',
             arcade: {
-                gravity: { y: 300 },
+                gravity: { y: 700 },
                 debug: true
             }
         },
@@ -61,18 +61,18 @@
     {
         if (gameState.cursors.left.isDown)
         {
-            player.setVelocityX(-160);
+            player.setVelocityX(-800);
         }
         else if (gameState.cursors.right.isDown)
         {
-            player.setVelocityX(160);
+            player.setVelocityX(800);
         }
         if (gameState.cursors.up.isDown)
         {
-            player.setVelocityY(-160);
+            player.setVelocityY(-800);
         }else if (gameState.cursors.down.isDown)
         {
-            player.setVelocityY(160);
+            player.setVelocityY(800);
         }
     }
     </script>
