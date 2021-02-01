@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+</head>
+<body>
+
+    <script>
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 700 },
+                debug: true
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
+
+    var game = new Phaser.Game(config);
+
+    var player;
+    var background;
+    var cursors;
+    var emitter;
+    var particles;
+
+    let gameState = {};
+
+    function preload ()
+    {
+        this.load.image('background', 'https://labs.phaser.io/assets/skies/space3.png');
+        this.load.image('player', 'https://labs.phaser.io/assets/sprites/phaser3-logo.png');
+        this.load.image('red', 'https://labs.phaser.io/assets/particles/red.png');
+    }
+
+    function create ()
+    {
+        gameState.background = this.add.image(400, 300, 'background');
+        particles = this.add.particles('red');
+        emitter = particles.createEmitter({
+            speed: 100,
+            scale: { start: 1.2, end: -0.01 },
+            blendMode: 'ADD'
+        });
+        gameState.cursors = this.input.keyboard.createCursorKeys();
+        player = this.physics.add.image(400, 300, 'player');
+        player.setBounce(1, 1);
+        player.setCollideWorldBounds(true);
+        emitter.startFollow(player);
+    }
+
+    function update()
+    {
+        if (gameState.cursors.left.isDown)
+        {
+            player.setVelocityX(-800);
+        }
+        else if (gameState.cursors.right.isDown)
+        {
+            player.setVelocityX(800);
+        }
+        if (gameState.cursors.up.isDown)
+        {
+            player.setVelocityY(-800);
+        }else if (gameState.cursors.down.isDown)
+        {
+            player.setVelocityY(800);
+        }
+    }
+    </script>
+
+</body>
+</html>
