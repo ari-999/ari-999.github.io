@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script> -->
 </head>
 <body>
 
@@ -13,7 +13,7 @@
         physics: {
             default: 'arcade',
             arcade: {
-                gravity: { y: 700 },
+                gravity: { y: 1000 },
                 debug: true
             }
         },
@@ -46,7 +46,7 @@
         gameState.background = this.add.image(400, 300, 'background');
         particles = this.add.particles('red');
         emitter = particles.createEmitter({
-            speed: 100,
+            speed: 1200,
             scale: { start: 1.2, end: -0.01 },
             blendMode: 'ADD'
         });
