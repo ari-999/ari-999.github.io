@@ -13,7 +13,7 @@
         physics: {
             default: 'arcade',
             arcade: {
-                gravity: { y: 1000 },
+                gravity: { y: 100000 },
                 debug: true
             }
         },
@@ -52,7 +52,7 @@
         });
         gameState.cursors = this.input.keyboard.createCursorKeys();
         player = this.physics.add.image(400, 300, 'player');
-        player.setBounce(1, 1);
+        player.setBounce(10000, 10000);
         player.setCollideWorldBounds(true);
         emitter.startFollow(player);
     }
@@ -61,18 +61,18 @@
     {
         if (gameState.cursors.left.isDown)
         {
-            player.setVelocityX(-1000);
+            player.setVelocityX(-100000);
         }
         else if (gameState.cursors.right.isDown)
         {
-            player.setVelocityX(1000);
+            player.setVelocityX(100000);
         }
         if (gameState.cursors.up.isDown)
         {
-            player.setVelocityY(-1000);
+            player.setVelocityY(-100000);
         }else if (gameState.cursors.down.isDown)
         {
-            player.setVelocityY(1000);
+            player.setVelocityY(100000);
         }
     }
     </script>
