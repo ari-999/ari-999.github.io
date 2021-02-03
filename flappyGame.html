@@ -138,17 +138,11 @@ function component(width, height, color, x, y, type) {
 }
 
 function killed() {
-    myGamePiece.image.src = "pDeath.gif";
-    myGamePiece.width = 100;
-    myGamePiece.height = 100;
+    
     location.reload();
-    myGamePiece.image.src = "pDeath.gif";
-    myGamePiece.width = 100;
-    myGamePiece.height = 100;
+    
     alert([myScore.text] + ". Press \"OK\" or \"ENTER\" to continue.");
-    myGamePiece.image.src = "pDeath.gif";
-    myGamePiece.width = 100;
-    myGamePiece.height = 100;
+    
 }
 
 function updateGameArea() {
@@ -156,13 +150,7 @@ function updateGameArea() {
     for (i = 0; i < myObstacles.length; i += 1) {
         if(GodMode === false){
         if (myGamePiece.crashWith(myObstacles[i])) {
-            myGamePiece.image.src = "pDeath.gif";
-    myGamePiece.width = 100;
-    myGamePiece.height = 100;
-setTimeout1 = setTimeout(killed, 30); //killed();
-            myGamePiece.image.src = "pDeath.gif";
-    myGamePiece.width = 100;
-    myGamePiece.height = 100;
+setTimeout1 = setTimeout(killed, 30);
         }
     }
 }
