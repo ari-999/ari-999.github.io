@@ -138,6 +138,7 @@ function component(width, height, color, x, y, type) {
 }
 
 function killed() {
+    myGamePiece.image.src = "pFrame3.png";
     location.reload();
     alert([myScore.text] + ". Press \"OK\" or \"ENTER\" to continue.");
 }
@@ -147,6 +148,7 @@ function updateGameArea() {
     for (i = 0; i < myObstacles.length; i += 1) {
         if(GodMode === false){
         if (myGamePiece.crashWith(myObstacles[i])) {
+            myGamePiece.image.src = "pFrame3.png";
             killed();
         }
     }
@@ -224,12 +226,14 @@ document.addEventListener('keydown', function(event) {
 
 document.addEventListener('keydown', function(event) {
     if(event.keyCode == 38) {
+        myGamePiece.image.src = "pFrame2.png"
         accelerate(-0.1);
         tapLogD();
     }
 });
 document.addEventListener('keyup', function(event) {
     if(event.keyCode == 38) {
+        myGamePiece.image.src = "pFrame1.png"
         accelerate(0.025)
         tapLogU();
     }
