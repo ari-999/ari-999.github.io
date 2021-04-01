@@ -15,7 +15,7 @@
       document.getElementById("log").textContent += message + "\n";
     }
   </script>
-  <script src="https://chr15m.github.io/bugout/bugout.min.js" type="application/javascript"></script>
+  <script src="bugout.js" type="application/javascript"></script>
 </head>
 <body>
   <pre id="log"></pre>
@@ -34,10 +34,10 @@
 
   document.getElementById("input").onkeydown = function(ev) {
     if (ev.keyCode == 13) {
-      //if (b.lastwirecount) {
+      if (b.lastwirecount) {
         b.send(ev.target.textContent);
         ev.target.textContent = "";
-      //}
+      }
       ev.preventDefault();
     }
   }
