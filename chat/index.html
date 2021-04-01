@@ -34,10 +34,10 @@
 
   document.getElementById("input").onkeydown = function(ev) {
     if (ev.keyCode == 13) {
-      if (b.lastwirecount) {
+      //if (b.lastwirecount) {
         b.send(ev.target.textContent);
         ev.target.textContent = "";
-      }
+      //}
       ev.preventDefault();
     }
   }
