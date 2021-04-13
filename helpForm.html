@@ -43,14 +43,35 @@ input[type=submit]:hover {
 
 <h3>Help Form</h3>
 
+<form name="contact" method="POST" data-netlify="true">
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>   
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Your Role: <select name="role[]" multiple>
+      <option value="leader">Leader</option>
+      <option value="follower">Follower</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+
 <div class="container">
-  <form action="helpForm.js">
-    <label for="name">Name</label>
-    <input type="text" id="name" name="thisname" placeholder="Your name..">
-
-    <label for="subject">Subject</label>
-    <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-
+  <form name="contact" method="POST" data-netlify="true">
+    <label for="name">Name
+    <input input type="text" name="name" placeholder="Your name..">
+    </label>
+    <label for="subject">Subject
+    <textarea input type="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+    </label>
     <input type="submit" value="Submit">
   </form>
 </div>
